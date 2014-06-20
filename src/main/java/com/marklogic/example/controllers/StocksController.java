@@ -66,7 +66,7 @@ public class StocksController {;
 
     ClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(client);
     RestTemplate restTemplate = new RestTemplate(factory);
-    restTemplate.getMessageConverters().add(messageConverter);
+    restTemplate.getMessageConverters().add(new MultipartPerformanceMessageConverter());
     return restTemplate;
   }
 
@@ -76,9 +76,12 @@ public class StocksController {;
 
     String rawUri = String.format("http://%s:%d/stocks/list.xml", apiHost, apiPort);
 
-    ResponseEntity<Stocks> stocksResponse = restTemplate.getForEntity(new URI(rawUri), Stocks.class);
-    model.put("stocks", stocksResponse.getBody());
-
+    try {
+      ResponseEntity<Stocks> stocksResponse = restTemplate.getForEntity(new URI(rawUri), Stocks.class);
+      model.put("stocks", stocksResponse.getBody());
+    } catch(Exception e) {
+      throw new Exception(e);
+    }
     return "/WEB-INF/views/stocks.jsp";
   }
 
