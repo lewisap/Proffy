@@ -24,6 +24,10 @@
     </bean>
 
     <bean id="addProfilingHeader" class="com.marklogic.example.support.AddProfilingHeader"></bean>
-    <bean id="messageConverter" class="com.marklogic.example.support.MultipartPerformanceMessageConverter"/>
+    <bean id="messageConverter" class="com.marklogic.example.support.MultipartPerformanceMessageConverter">
+        <property name="profileDataHandler">
+            <bean class="com.marklogic.example.profiling.DynaTraceProfileDataHandler"></bean>
+        </property>
+    </bean>
 
 </beans>

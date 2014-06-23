@@ -1,5 +1,7 @@
 package com.marklogic.example.support;
 
+import com.marklogic.example.profiling.ProfileDataHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -21,6 +23,16 @@ import java.util.logging.Logger;
  */
 public class MultipartPerformanceMessageConverter implements HttpMessageConverter<Object> {
 
+  private ProfileDataHandler profileDataHandler;
+
+  public ProfileDataHandler getProfileDataHandler() {
+    return profileDataHandler;
+  }
+
+  public void setProfileDataHandler(ProfileDataHandler profileDataHandler) {
+    this.profileDataHandler = profileDataHandler;
+  }
+
   @Override
   public boolean canRead(Class<?> aClass, MediaType mediaType) {
     return (mediaType != null && "multipart".equals(mediaType.getType()) && "mixed".equals(mediaType.getSubtype()));
@@ -38,6 +50,16 @@ public class MultipartPerformanceMessageConverter implements HttpMessageConverte
     return result;
   }
 
+  /**
+   * Read the response from the server.  If the response contains profiling data, then
+   * try to pass it off tot he data handler, if there is one registered.  If it does
+   * not, then process the response as normall (unmrashalling the data).
+   * @param aClass
+   * @param httpInputMessage
+   * @return
+   * @throws IOException
+   * @throws HttpMessageNotReadableException
+   */
   @Override
   public Object read(Class<?> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
     Logger logger = Logger.getAnonymousLogger();
@@ -57,8 +79,13 @@ public class MultipartPerformanceMessageConverter implements HttpMessageConverte
         ByteArrayInputStream bais = new ByteArrayInputStream(parser.partAtIndex(i).getBytes());
         result = JAXB.unmarshal(bais, aClass);
         bais.close();
+      } else if(parser.contentType(i).equals("vnd.x-ml-profile/xml")) {
+        if (profileDataHandler != null) {
+          profileDataHandler.acceptData(parser.partAtIndex(i));
+        }
       }
     }
+
     return result;
   }
 
