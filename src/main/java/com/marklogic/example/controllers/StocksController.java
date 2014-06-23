@@ -66,7 +66,7 @@ public class StocksController {;
 
     ClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(client);
     RestTemplate restTemplate = new RestTemplate(factory);
-    restTemplate.getMessageConverters().add(new MultipartPerformanceMessageConverter());
+    restTemplate.getMessageConverters().add(messageConverter);
     return restTemplate;
   }
 

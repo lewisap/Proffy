@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class AddProfilingHeader implements HttpRequestInterceptor {
   @Override
   public void process(HttpRequest httpRequest, HttpContext httpContext) throws HttpException, IOException {
-    httpRequest.addHeader("X-ML-Report", "yes");
+    httpRequest.addHeader("X-ML-Profile", "yes");
     Logger logger = Logger.getAnonymousLogger();
     logger.log(Level.INFO, String.format("Handling outbound intercept %s", httpRequest.getRequestLine().getUri()));
   }

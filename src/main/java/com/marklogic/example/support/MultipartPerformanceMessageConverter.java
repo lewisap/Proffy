@@ -79,7 +79,9 @@ public class MultipartPerformanceMessageConverter implements HttpMessageConverte
         ByteArrayInputStream bais = new ByteArrayInputStream(parser.partAtIndex(i).getBytes());
         result = JAXB.unmarshal(bais, aClass);
         bais.close();
-      } else if(parser.contentType(i).equals("vnd.x-ml-profile/xml")) {
+      }
+
+      if(parser.contentType(i).equals("vnd.x-ml-profile/xml")) {
         if (profileDataHandler != null) {
           profileDataHandler.acceptData(parser.partAtIndex(i));
         }
