@@ -8,26 +8,33 @@
             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="com.marklogic.example.controllers"/>
+    <context:component-scan base-package="com.marklogic.example.services"/>
     <context:component-scan base-package="com.marklogic.example.factories"/>
     <mvc:annotation-driven/>
 
-    <!--
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>/
-    </bean>
-    -->
+
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!--
+        Set up the credentials cache so that we can invoke MarkLogic with credentials.
+        This may not be required, depending on the existing application.  For this example,
+        I needed to invoke end points on MarkLogic.  I'm assuming that your application
+        already invokes endpoints on MarkLogic and has a credential mechanism already in
+        place.
+    -->
     <bean id="credentials" class="org.apache.http.auth.UsernamePasswordCredentials">
         <constructor-arg name="userName" value="admin"/>
         <constructor-arg name="password" value="x8kia30"/>
     </bean>
 
+    <!--
+
+    -->
     <bean id="addProfilingHeader" class="com.marklogic.example.support.AddProfilingHeader"></bean>
     <bean id="messageConverter" class="com.marklogic.example.support.MultipartPerformanceMessageConverter">
         <property name="profileDataHandler">
             <bean class="com.marklogic.example.profiling.DynaTraceProfileDataHandler"></bean>
         </property>
     </bean>
-
 </beans>

@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * This is a class only used for the POC.  It is not required in your application.
+ *
  * Created by phoehne on 6/16/14.
  */
 @XmlRootElement(name="Stocks")

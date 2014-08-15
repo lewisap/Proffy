@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
+ * This reads the response from the server.  Note that wrting a multipart message is
+ * not supported by this class.
+ *
  * Created by phoehne on 6/19/14.
  */
 public class MultipartPerformanceMessageConverter implements HttpMessageConverter<Object> {

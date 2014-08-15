@@ -8,6 +8,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * The POC uses this factory to create a proper REST template that will authenticate against
+ * the target host.
+ *
+ * Because this is essentially providing authentication, and you probably already do that,
+ * you will not need this class.
+ *
  * Created by phoehne on 6/16/14.
  */
 @Component

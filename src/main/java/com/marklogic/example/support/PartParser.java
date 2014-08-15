@@ -6,6 +6,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Parses out a part of the multipart response.  Note that each part of the response
+ * is separated by some (fairly unique) boundary text.
+ *
  * Created by phoehne on 6/19/14.
  */
 public class PartParser {

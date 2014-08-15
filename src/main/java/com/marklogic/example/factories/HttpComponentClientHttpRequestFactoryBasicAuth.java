@@ -14,6 +14,12 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import java.net.URI;
 
 /**
+ * This class will perform HTTP Basic authentication agains the MarkLogic
+ * server.
+ *
+ * This is for the POC and you probably do not need this class because your
+ * end points already authenticate against MakrLogic.
+ *
  * Created by phoehne on 6/16/14.
  */
 public class HttpComponentClientHttpRequestFactoryBasicAuth extends HttpComponentsClientHttpRequestFactory {
