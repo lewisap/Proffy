@@ -6,7 +6,10 @@ import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.protocol.HttpContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,8 +27,10 @@ public class AddProfilingHeader implements HttpRequestInterceptor {
   public void process(HttpRequest httpRequest, HttpContext httpContext) throws HttpException, IOException {
     logger.log(Level.INFO, "Processing " + httpRequest.getRequestLine().getUri());
 
+    HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+    logger.log(Level.INFO, String.format("URI: %s\nContext-path: %s", request.getRequestURI(), request.getContextPath()));
     try {
-      if (watchUriService.isMatch(httpRequest.getRequestLine().getUri())) {
+      if (watchUriService.isMatch(request.getRequestURI())) {
         httpRequest.addHeader("X-ML-Profile", "yes");
         logger.log(Level.INFO, String.format("Requesting profile data for %s", httpRequest.getRequestLine().getUri()));
       }

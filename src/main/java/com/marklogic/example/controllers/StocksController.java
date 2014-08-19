@@ -1,5 +1,6 @@
 package com.marklogic.example.controllers;
 
+import com.marklogic.example.aspects.Profileable;
 import com.marklogic.example.models.Stocks;
 import com.marklogic.example.support.AddProfilingHeader;
 import com.marklogic.example.support.MultipartPerformanceMessageConverter;
@@ -70,6 +71,7 @@ public class StocksController {;
     return restTemplate;
   }
 
+  @Profileable
   @RequestMapping(method=RequestMethod.GET)
   public String get(Map<String, Object> model) throws Exception {
     RestTemplate restTemplate = makeTemplate();
@@ -85,6 +87,7 @@ public class StocksController {;
     return "/WEB-INF/views/stocks.jsp";
   }
 
+  @Profileable
   @RequestMapping(method=RequestMethod.POST)
   public String add(@RequestParam String ticker) throws Exception {
     RestTemplate restTemplate = makeTemplate();

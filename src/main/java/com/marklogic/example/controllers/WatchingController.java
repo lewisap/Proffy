@@ -30,7 +30,7 @@ public class WatchingController {
   @Autowired
   private WatchUriService watchUriService;
 
-  public WatchUriService getWatchUriService() {
+  public WatchUriService getWatchUraiService() {
     return watchUriService;
   }
 
