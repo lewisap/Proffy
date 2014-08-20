@@ -1,7 +1,6 @@
 package com.marklogic.example.support;
 
 import com.marklogic.example.profiling.ProfileDataHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * This reads the response from the server.  Note that wrting a multipart message is
@@ -65,7 +63,6 @@ public class MultipartPerformanceMessageConverter implements HttpMessageConverte
    */
   @Override
   public Object read(Class<?> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
-    Logger logger = Logger.getAnonymousLogger();
     BufferedReader br = new BufferedReader(new InputStreamReader(httpInputMessage.getBody()));
 
     PartParser parser = new PartParser();

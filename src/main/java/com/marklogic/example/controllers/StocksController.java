@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -96,7 +95,7 @@ public class StocksController {;
     MultiValueMap<String, String> foo = new LinkedMultiValueMap<>();
     foo.add("ticker", ticker);
 
-    URI where = restTemplate.postForLocation(new URI(rawUri), foo);
+    restTemplate.postForLocation(new URI(rawUri), foo);
 
     return "redirect:/stocks";
   }

@@ -3,8 +3,6 @@ package com.marklogic.example.support;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 public class PartParserTest extends TestCase {
   String[] example1 = {"--12859316667011459246",

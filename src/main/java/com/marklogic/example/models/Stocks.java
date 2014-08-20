@@ -1,6 +1,5 @@
 package com.marklogic.example.models;
 
-import javax.xml.bind.annotation.XmlList;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.LinkedList;
 import java.util.List;

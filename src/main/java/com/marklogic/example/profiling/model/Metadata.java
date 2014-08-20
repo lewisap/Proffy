@@ -28,7 +28,11 @@ import java.util.Date;
     propOrder = {"overallElapsed", "created", "serverVersion"}
 )
 public class Metadata implements Serializable {
-  private Duration overallElapsed;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+private Duration overallElapsed;
   private Date created;
   private String serverVersion;
 
