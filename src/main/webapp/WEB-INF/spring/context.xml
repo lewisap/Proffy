@@ -25,7 +25,7 @@
     -->
     <bean id="credentials" class="org.apache.http.auth.UsernamePasswordCredentials">
         <constructor-arg name="userName" value="admin"/>
-        <constructor-arg name="password" value="x8kia30"/>
+        <constructor-arg name="password" value="MixxT@p3"/>
     </bean>
 
     <!--
