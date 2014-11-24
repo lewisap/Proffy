@@ -85,7 +85,7 @@ public class WatchUriService {
     boolean result = false;
     synchronized (watchlist) {
       for (String targetUrl : watchlist) {
-        result =  (uri.startsWith(targetUrl));
+        result =  (uri.startsWith(targetUrl) || uri.equals(targetUrl));
         if (result) break;
       }
     }

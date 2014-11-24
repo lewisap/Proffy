@@ -1,7 +1,5 @@
 package com.marklogic.example.profiling;
 
-import com.dynatrace.diagnostics.agent.sdk.AgentSDKFactory;
-import com.dynatrace.diagnostics.agent.sdk.TaggingSDK;
 import com.marklogic.example.profiling.model.Report;
 
 import javax.annotation.PostConstruct;
@@ -19,17 +17,13 @@ import java.util.logging.Logger;
  */
 public class DynaTraceProfileDataHandler implements ProfileDataHandler {
 
-  private TaggingSDK sdk;
 
   @PostConstruct
   public void startDynatrace() {
-    AgentSDKFactory.initialize();
-    sdk = AgentSDKFactory.createTaggingSDK();
   }
 
   @PreDestroy
   public void shutdownDynatrace() {
-    AgentSDKFactory.uninitialize();
   }
 
   @Override
@@ -42,10 +36,6 @@ public class DynaTraceProfileDataHandler implements ProfileDataHandler {
     logger.log(Level.INFO, profilingData);
     ByteArrayInputStream bais = new ByteArrayInputStream(profilingData.getBytes());
     Report report = JAXB.unmarshal(bais, Report.class);
-
-    sdk.startServerPath();
-
-    sdk.endServerPath();
 
     assert report != null;
   }

@@ -25,8 +25,6 @@ public class AddProfilingHeader implements HttpRequestInterceptor {
 
   @Override
   public void process(HttpRequest httpRequest, HttpContext httpContext) throws HttpException, IOException {
-    logger.log(Level.INFO, "Processing " + httpRequest.getRequestLine().getUri());
-
     HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
     logger.log(Level.INFO, String.format("URI: %s\nContext-path: %s", request.getRequestURI(), request.getContextPath()));
     try {

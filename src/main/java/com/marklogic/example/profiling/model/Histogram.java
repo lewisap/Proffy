@@ -1,6 +1,5 @@
 package com.marklogic.example.profiling.model;
 
-import javax.xml.bind.annotation.XmlList;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 

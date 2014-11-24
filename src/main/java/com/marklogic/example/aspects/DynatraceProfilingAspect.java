@@ -1,10 +1,8 @@
 package com.marklogic.example.aspects;
 
-import com.marklogic.example.services.WatchUriService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,8 +1,6 @@
 package com.marklogic.example.profiling.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlNs;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
@@ -46,7 +44,11 @@ import java.io.Serializable;
     name = "report"
 )
 public class Report implements Serializable {
-  private Metadata metadata;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4467047476271369924L;
+private Metadata metadata;
   private Histogram histogram;
 
   @XmlElement(name = "metadata", namespace = "http://marklogic.com/xdmp/profile")
