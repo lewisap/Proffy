@@ -1,6 +1,9 @@
 package com.marklogic.example.support;
 
 import com.marklogic.example.profiling.ProfileDataHandler;
+import com.marklogic.example.profiling.model.Report;
+import com.marklogic.example.profiling.model.Expression;
+
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -83,7 +86,11 @@ public class MultipartPerformanceMessageConverter implements HttpMessageConverte
 
       if(parser.contentType(i).equals("vnd.x-ml-profile/xml")) {
         if (profileDataHandler != null) {
-          profileDataHandler.acceptData(parser.partAtIndex(i));
+          Report report = profileDataHandler.acceptData(parser.partAtIndex(i));
+          profileDataHandler.printMetadata(report);
+          for (Expression expression: report.getHistogram().getExpression()) {
+            profileDataHandler.printExpression(expression);
+          }
         }
       }
     }

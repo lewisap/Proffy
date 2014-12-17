@@ -25,7 +25,6 @@ import java.util.List;
 public class Histogram {
   private List<Expression> expressions;
 
-
   public List<Expression> getExpression() {
     return expressions;
   }

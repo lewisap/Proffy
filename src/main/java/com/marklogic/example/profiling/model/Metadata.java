@@ -29,10 +29,10 @@ import java.util.Date;
 )
 public class Metadata implements Serializable {
   /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-private Duration overallElapsed;
+  private Duration overallElapsed;
   private Date created;
   private String serverVersion;
 
@@ -61,5 +61,16 @@ private Duration overallElapsed;
 
   public void setServerVersion(String serverVersion) {
     this.serverVersion = serverVersion;
+  }
+
+  @Override
+  public String toString() {
+    StringBuffer buff = new StringBuffer("{METADATA}");
+
+    buff.append(" | Overall-Elapsed=" + getOverallElapsed());
+    buff.append(" | Created=" + getCreated());
+    buff.append(" | Server-Version=" + getServerVersion());
+
+    return buff.toString();
   }
 }

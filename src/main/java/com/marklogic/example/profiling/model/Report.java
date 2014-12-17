@@ -45,10 +45,10 @@ import java.io.Serializable;
 )
 public class Report implements Serializable {
   /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4467047476271369924L;
-private Metadata metadata;
+  private Metadata metadata;
   private Histogram histogram;
 
   @XmlElement(name = "metadata", namespace = "http://marklogic.com/xdmp/profile")
@@ -67,5 +67,17 @@ private Metadata metadata;
 
   public void setHistogram(Histogram histogram) {
     this.histogram = histogram;
+  }
+
+  @Override
+  public String toString() {
+    StringBuffer buff = new StringBuffer("\nPROFILING DATA");
+
+    buff.append(getMetadata().toString());
+    for (Expression expression: getHistogram().getExpression()) {
+      buff.append(expression.toString());
+    }
+
+    return buff.toString();
   }
 }

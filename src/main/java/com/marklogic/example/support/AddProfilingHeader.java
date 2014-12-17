@@ -28,6 +28,11 @@ public class AddProfilingHeader implements HttpRequestInterceptor {
     HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
     logger.log(Level.INFO, String.format("URI: %s\nContext-path: %s", request.getRequestURI(), request.getContextPath()));
     try {
+      logger.log(Level.INFO, "REQUEST-URI = " + request.getRequestURI());
+      for (String s: watchUriService.get()) {
+        logger.log(Level.INFO, "WATCH-LIST = " + s);
+      }
+
       if (watchUriService.isMatch(request.getRequestURI())) {
         httpRequest.addHeader("X-ML-Profile", "yes");
         logger.log(Level.INFO, String.format("Requesting profile data for %s", httpRequest.getRequestLine().getUri()));
@@ -35,7 +40,5 @@ public class AddProfilingHeader implements HttpRequestInterceptor {
     } catch(Throwable t) {
       logger.log(Level.SEVERE, t.getMessage(), t);
     }
-
-
   }
 }

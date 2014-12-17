@@ -114,4 +114,20 @@ public class Expression {
   public void setDeepTime(Duration deepTime) {
     this.deepTime = deepTime;
   }
+
+  @Override
+  public String toString() {
+    StringBuffer buff = new StringBuffer("{EXPRESSION}");
+
+    buff.append(" | ID=" + getExpressionId());
+    buff.append(" | Source=" + getExpressionSource());
+    buff.append(" | URI=" + getUri());
+    buff.append(" | Line=" + getLine());
+    buff.append(" | Column=" + getColumn());
+    buff.append(" | Count=" + getCount());
+    buff.append(" | Shallow-Time=" + getShallowTime());
+    buff.append(" | Deep-Time=" + getDeepTime());
+
+    return buff.toString();
+  }
 }
