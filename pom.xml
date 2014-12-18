@@ -168,6 +168,8 @@
                     <server>${tomcat-server}</server>
                     <url>${tomcat-url}</url>
                     <path>/example</path>
+                    <username>admin</username>
+                    <password>admin</password>
                 </configuration>
                 <executions>
                     <execution>
